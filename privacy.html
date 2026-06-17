@@ -46,22 +46,24 @@
   <li>Does not access Seller Central or Amazon Ads accounts</li>
   <li>Does not sell or share your data with advertisers</li>
   <li>Does not track your browsing activity outside of Amazon product/review pages</li>
-  <li>Does not bypass Amazon's review display limits or automate account actions beyond reading visible page content</li>
+  <li>Does not bypass Amazon's review display limits, automate purchases, automate login, or perform actions in Seller Central</li>
 </ul>
 
 <h2>Permissions explained</h2>
 <ul>
-  <li><strong>storage</strong> — to save your settings and captured data locally</li>
-  <li><strong>activeTab / scripting</strong> — to read listing and review content from the Amazon tab you're viewing</li>
-  <li><strong>tabs</strong> — to open the Amazon review page when you click "Open Review Page"</li>
-  <li><strong>alarms</strong> — used only by the optional Advanced Auto Collect feature to schedule delayed actions</li>
+  <li><strong>storage</strong> — to save user settings, selected AI provider, locally stored API keys, captured listing/review data, and generated reports in your browser</li>
+  <li><strong>activeTab / scripting</strong> — to read listing and visible review content from the Amazon tab you're viewing, only when you open the extension or click an extraction action</li>
+  <li><strong>Amazon host permissions</strong> — to run on specific Amazon product and review page domains. ListingLens does not use a broad all_urls permission</li>
+  <li><strong>OpenAI / Google Gemini host permissions</strong> — to send selected listing/review content directly from your browser to the AI provider you selected, using your own API key</li>
+  <li><strong>tabs</strong> (optional) — only requested at runtime if you explicitly enable Advanced Auto Collect, so ListingLens can monitor or update the active Amazon review tab during that optional workflow</li>
+  <li><strong>alarms</strong> — used only by the optional Advanced Auto Collect feature to schedule delayed, best-effort review capture steps after explicit user opt-in</li>
 </ul>
 
 <h2>Your choices</h2>
 <p>You can clear all stored data at any time from the extension's Reviews tab ("Clear Reviews") or by removing the extension from Chrome, which deletes all local storage associated with it.</p>
 
 <h2>Contact</h2>
-<p>Questions about this policy can be sent to the developer via the GitHub repository: <a href="https://github.com/doquang-frvn" target="_blank">github.com/doquang-frvn</a>.</p>
+<p>Questions about this policy can be sent via our <a href="support.html">support page</a> or directly through <a href="https://github.com/doquang-frvn/listinglens/issues" target="_blank">GitHub Issues</a>.</p>
 
 </body>
 </html>
