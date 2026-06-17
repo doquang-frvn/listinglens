@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ListingLens — Amazon Review-to-Copy Intelligence</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Turn visible Amazon reviews and listing content into title, bullet, and ad-copy fixes that reduce expectation gaps and return risk.">
+<style>
+  :root {
+    --bg: #0d0f14; --card: #161922; --border: #262b38;
+    --text: #e7eaf0; --muted: #9aa3b5;
+    --primary: #5b8df6; --secondary: #a78bfa; --success: #34d399;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 60px 24px 80px; }
+  header { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+  .logo { width: 36px; height: 36px; }
+  h1 { font-size: 22px; margin: 0; }
+  .tagline { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
+  .hero h2 { font-size: 32px; line-height: 1.3; margin: 0 0 16px; }
+  .hero p { color: var(--muted); font-size: 16px; max-width: 560px; }
+  .cta-row { display: flex; gap: 12px; margin: 28px 0 50px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 11px 22px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
+  .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 40px 0; }
+  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
+  .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .feature-card h3 { font-size: 14px; margin: 0 0 6px; color: var(--text); }
+  .feature-card p { font-size: 13px; color: var(--muted); margin: 0; }
+  .pricing { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin: 40px 0; }
+  .pricing h2 { font-size: 18px; margin: 0 0 18px; }
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .plans { grid-template-columns: 1fr; } }
+  .plan { border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .plan.pro { border-color: var(--primary); background: rgba(91,141,246,0.06); }
+  .plan-name { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .plan-price { font-size: 26px; font-weight: 700; margin: 6px 0 12px; }
+  .plan-price span { font-size: 13px; color: var(--muted); font-weight: 400; }
+  .plan ul { margin: 0; padding-left: 18px; font-size: 13px; color: var(--muted); }
+  .plan ul li { margin-bottom: 6px; }
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <svg class="logo" viewBox="0 0 20 20" fill="none">
+      <circle cx="10" cy="10" r="9" stroke="#5b8df6" stroke-width="1.5"/>
+      <path d="M6 10h8M10 6v8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h1>ListingLens</h1>
+      <p class="tagline">Amazon Review-to-Copy Intelligence</p>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h2>Find what your listing should clarify before customers complain.</h2>
+    <p>ListingLens turns the Amazon reviews and listing content you can already see into title rewrites, bullets, image text, and ad angles — backed by evidence, not guesses.</p>
+  </div>
+
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://chrome.google.com/webstore" target="_blank">Add to Chrome — Free</a>
+    <a class="btn btn-secondary" href="privacy.html">Privacy Policy</a>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <h3>Evidence-tagged insights</h3>
+      <p>Every suggestion is labeled [listing], [review], or [inferred] with a confidence level — never a guess presented as fact.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Listing Gap Finder</h3>
+      <p>Spots expectation mismatches — size, install steps, compatibility — before they turn into returns.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Negative Review Shield</h3>
+      <p>Turns complaint patterns into ready-to-use bullet and image-text fixes.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Bring your own AI key</h3>
+      <p>Use OpenAI or Google Gemini (genuinely free tier, no card required). Your key stays in your browser.</p>
+    </div>
+  </div>
+
+  <div class="pricing">
+    <h2>Pricing</h2>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0</div>
+        <ul>
+          <li>10 different products/day</li>
+          <li>Capture visible reviews</li>
+          <li>Manual paste reviews</li>
+        </ul>
+      </div>
+      <div class="plan pro">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">$39<span>/month</span></div>
+        <ul>
+          <li>Unlimited products</li>
+          <li>150 AI reports/month</li>
+          <li>Full evidence-based report + exports</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Clingogo</span>
+    <span>
+      <a href="privacy.html">Privacy</a> ·
+      <a href="https://github.com/doquang-frvn/listinglens" target="_blank">GitHub</a>
+    </span>
+  </footer>
+
+</div>
+</body>
+</html>
