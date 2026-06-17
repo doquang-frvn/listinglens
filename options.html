@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ListingLens — Settings</title>
+  <link rel="stylesheet" href="options.css"/>
+</head>
+<body>
+<div class="page">
+
+  <header class="header">
+    <div class="header-brand">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="9" stroke="#5b8df6" stroke-width="1.5"/>
+        <path d="M6 10h8M10 6v8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div><div class="brand-name">ListingLens</div><div class="brand-sub">Settings · v1.4.5</div></div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ── Subscription ── -->
+    <section class="section" id="section-subscription">
+      <div class="section-title">Subscription</div>
+      <div class="section-desc">Free includes 10 different products/day. Pro ($39/mo) unlocks unlimited products and AI analysis.</div>
+
+      <div class="sub-status-card">
+        <div class="sub-status-row">
+          <span class="sub-label">Current Plan</span>
+          <span id="sub-plan" class="sub-plan-badge sub-plan-free">Free</span>
+        </div>
+        <div class="sub-status-row">
+          <span class="sub-label">License Status</span>
+          <span id="sub-license-status" class="sub-value">—</span>
+        </div>
+        <div class="sub-status-row" id="sub-asin-row">
+          <span class="sub-label">Products today</span>
+          <span id="sub-asin-usage" class="sub-value">0 / 10</span>
+        </div>
+        <div class="sub-status-row hidden" id="sub-reports-row">
+          <span class="sub-label">AI reports this month</span>
+          <span id="sub-reports-usage" class="sub-value">0 / 150</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="licenseKey">License Key</label>
+        <div class="input-row">
+          <input type="text" id="licenseKey" class="input" placeholder="Enter your Pro license key" autocomplete="off" spellcheck="false"/>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button id="btn-verify-license" class="btn btn-secondary">Verify License</button>
+        <button id="btn-clear-license" class="btn btn-danger">Clear License</button>
+      </div>
+      <div id="license-result" class="feedback hidden"></div>
+
+      <div class="btn-row" style="margin-top:10px;">
+        <button id="btn-upgrade-pro" class="btn btn-primary">Upgrade to Pro — $39/mo</button>
+        <button id="btn-manage-sub" class="btn btn-secondary">Manage Subscription</button>
+      </div>
+
+      <div class="usage-note" style="margin-top:10px;">
+        <span class="usage-icon">ℹ</span>
+        <span>ListingLens Pro activation is rolling out. If checkout isn't live yet for your account, your license key will activate automatically once issued.</span>
+      </div>
+    </section>
+
+    <!-- ── BYO API Key ── -->
+    <section class="section" id="section-byo">
+      <div class="section-title">AI Provider</div>
+      <div class="section-desc">Choose which AI provider analyzes your listing. Gemini has a genuinely free tier — no credit card required.</div>
+
+      <div class="provider-options">
+        <label class="provider-option">
+          <input type="radio" name="provider" id="provider-openai" value="openai" checked/>
+          <div class="provider-card">
+            <div class="provider-name">OpenAI <span class="provider-tag tag-paid">Paid</span></div>
+            <div class="provider-desc">gpt-4o-mini ≈ $0.01–0.05/analysis. Requires billing on your OpenAI account.</div>
+          </div>
+        </label>
+        <label class="provider-option">
+          <input type="radio" name="provider" id="provider-gemini" value="gemini"/>
+          <div class="provider-card">
+            <div class="provider-name">Google Gemini <span class="provider-tag tag-free">Free tier</span></div>
+            <div class="provider-desc">gemini-2.5-flash — free, no credit card. 15 requests/min, 1,500/day.</div>
+          </div>
+        </label>
+      </div>
+
+      <!-- OpenAI fields -->
+      <div id="openai-fields">
+        <div class="section-desc" style="margin-top:10px;">
+          <a href="https://platform.openai.com/api-keys" target="_blank" class="link">Get your OpenAI API key →</a>
+        </div>
+        <div class="field">
+          <label class="label" for="apiKey">OpenAI API Key</label>
+          <div class="input-row">
+            <input type="password" id="apiKey" class="input" placeholder="sk-..." autocomplete="off" spellcheck="false"/>
+            <button id="btn-toggle-key" class="btn-icon-only" title="Show/hide">👁</button>
+          </div>
+          <div id="key-display" class="key-display hidden"></div>
+        </div>
+        <div class="field">
+          <label class="label" for="model">Model</label>
+          <select id="model" class="input select">
+            <option value="gpt-4o-mini">gpt-4o-mini (recommended — fast &amp; affordable)</option>
+            <option value="gpt-4o">gpt-4o (higher quality, higher cost)</option>
+            <option value="gpt-4-turbo">gpt-4-turbo</option>
+            <option value="gpt-3.5-turbo">gpt-3.5-turbo (lowest cost)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Gemini fields -->
+      <div id="gemini-fields" class="hidden">
+        <div class="section-desc" style="margin-top:10px;">
+          <a href="https://aistudio.google.com/apikey" target="_blank" class="link">Get your free Gemini API key →</a>
+        </div>
+        <div class="field">
+          <label class="label" for="geminiApiKey">Gemini API Key</label>
+          <div class="input-row">
+            <input type="password" id="geminiApiKey" class="input" placeholder="AIza..." autocomplete="off" spellcheck="false"/>
+            <button id="btn-toggle-gemini-key" class="btn-icon-only" title="Show/hide">👁</button>
+          </div>
+          <div id="gemini-key-display" class="key-display hidden"></div>
+        </div>
+        <div class="field">
+          <label class="label" for="geminiModel">Model</label>
+          <select id="geminiModel" class="input select">
+            <option value="gemini-2.5-flash">gemini-2.5-flash (recommended — fast, free tier)</option>
+            <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite (highest free rate limit)</option>
+            <option value="gemini-2.5-pro">gemini-2.5-pro (higher quality, lower free quota)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="label" for="maxTokens">Max Tokens</label>
+          <input type="number" id="maxTokens" class="input" min="1000" max="4096" placeholder="3000"/>
+        </div>
+        <div class="field">
+          <label class="label" for="temperature">Temperature</label>
+          <input type="number" id="temperature" class="input" min="0" max="1" step="0.05" placeholder="0.4"/>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button id="btn-test" class="btn btn-secondary">Test API Key</button>
+        <button id="btn-clear-key" class="btn btn-danger">Clear Key</button>
+      </div>
+      <div id="test-result" class="feedback hidden"></div>
+
+      <div class="usage-note">
+        <span class="usage-icon">💳</span>
+        <span id="usage-note-text"><strong>OpenAI mode:</strong> Usage is billed directly to your OpenAI account. gpt-4o-mini typically costs $0.01–0.05 per analysis.</span>
+      </div>
+    </section>
+
+    <!-- ── AI Mode (BYO vs Cloud) ── -->
+    <section class="section">
+      <div class="section-title">AI Mode</div>
+      <div class="section-desc">Choose how ListingLens runs the analysis.</div>
+
+      <div class="ai-mode-options">
+        <label class="ai-mode-option">
+          <input type="radio" name="aiMode" id="mode-byo" value="byo" checked/>
+          <div class="ai-mode-card">
+            <div class="ai-mode-name">Bring your own API key (above)</div>
+            <div class="ai-mode-desc">Your key stays in your browser — never sent to ListingLens servers.</div>
+          </div>
+        </label>
+        <label class="ai-mode-option">
+          <input type="radio" name="aiMode" id="mode-cloud" value="cloud"/>
+          <div class="ai-mode-card">
+            <div class="ai-mode-name">Use ListingLens AI credits <span class="coming-soon">Coming Soon</span></div>
+            <div class="ai-mode-desc">Analyze without managing API keys. Requires a ListingLens Pro subscription. Available in a future update.</div>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- ── Cloud AI (placeholder) ── -->
+    <section class="section hidden" id="section-cloud">
+      <div class="section-title">ListingLens Cloud AI <span class="coming-soon">Coming Soon</span></div>
+      <div class="section-desc">
+        Analyze without managing API keys. Connect with a ListingLens Pro subscription and your analysis quota is included.
+      </div>
+      <div class="cloud-placeholder">
+        <div class="cloud-placeholder-icon">🚀</div>
+        <div>ListingLens Cloud AI is in development. <br/>For now, use your own OpenAI API key.</div>
+      </div>
+    </section>
+
+    <!-- ── Privacy ── -->
+    <section class="section">
+      <div class="section-title">Privacy & Safety</div>
+      <div class="privacy-list">
+        <div class="privacy-item"><span class="pi-icon">✓</span><span>Listing and review data is stored locally in your browser.</span></div>
+        <div class="privacy-item"><span class="pi-icon">✓</span><span>In BYO mode, data is sent only to your selected AI provider using your API key — not to ListingLens.</span></div>
+        <div class="privacy-item"><span class="pi-icon">✓</span><span>Your selected AI API key is stored locally and never shared.</span></div>
+        <div class="privacy-item"><span class="pi-icon">⚠</span><span>Use a separate browser profile with a buyer-only Amazon account. Do not use your Seller Central profile with this tool.</span></div>
+      </div>
+    </section>
+
+    <!-- Save -->
+    <div class="save-bar">
+      <button id="btn-save" class="btn btn-primary">Save Settings</button>
+      <div id="save-status" class="save-status hidden">Saved ✓</div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span>ListingLens v1.4.5</span>
+    <span>No data collected by ListingLens · Analysis via your OpenAI key</span>
+  </footer>
+</div>
+<script src="subscription.js"></script>
+<script src="options.js"></script>
+</body>
+</html>

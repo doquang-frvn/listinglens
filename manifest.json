@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "ListingLens",
+  "version": "1.4.5",
+  "description": "Find listing gaps, expectation mismatches, and return risks — then get title, bullet, image-text, and ad-angle fixes.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [{
+    "matches": [
+      "https://www.amazon.com/*","https://amazon.com/*",
+      "https://www.amazon.co.uk/*","https://www.amazon.ca/*",
+      "https://www.amazon.de/*","https://www.amazon.fr/*",
+      "https://www.amazon.co.jp/*","https://www.amazon.com.au/*"
+    ],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "permissions": ["storage","activeTab","scripting","alarms"],
+  "optional_permissions": ["tabs"],
+  "host_permissions": [
+    "https://www.amazon.com/*","https://amazon.com/*",
+    "https://www.amazon.co.uk/*","https://www.amazon.ca/*",
+    "https://www.amazon.de/*","https://www.amazon.fr/*",
+    "https://www.amazon.co.jp/*","https://www.amazon.com.au/*",
+    "https://api.openai.com/*",
+    "https://generativelanguage.googleapis.com/*"
+  ]
+}

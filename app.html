@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>ListingLens Full App</title>
+  <link rel="stylesheet" href="popup.css"/>
+</head>
+<body class="full-app">
+
+  <header class="header">
+    <div class="header-brand">
+      <div class="logo-icon">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="9" stroke="#5b8df6" stroke-width="1.5"/>
+          <path d="M6 10h8M10 6v8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">ListingLens</div>
+        <div class="brand-sub">Amazon Review-to-Copy Intelligence</div>
+      </div>
+    </div>
+    <div id="page-status" class="status-badge status-neutral">Checking…</div>
+  </header>
+
+  <!-- Plan badge -->
+  <div id="plan-bar" class="plan-bar">
+    <span id="plan-badge" class="plan-badge plan-free">Free Plan</span>
+    <span id="plan-usage" class="plan-usage"></span>
+    <button id="btn-upgrade" class="plan-upgrade-btn hidden">Upgrade to Pro</button>
+  </div>
+
+  <!-- Upgrade banner (shown when a limit is hit) -->
+  <div id="upgrade-banner" class="upgrade-banner hidden">
+    <div class="upgrade-banner-text">
+      <strong>ListingLens Pro — $39/month</strong>
+      <span>Unlimited products + 150 AI reports/month with your own OpenAI/Gemini key.</span>
+    </div>
+    <button id="btn-upgrade-banner" class="btn btn-primary upgrade-banner-btn">Upgrade</button>
+  </div>
+
+  <!-- Primary actions -->
+  <div class="action-bar">
+    <button id="btn-extract"        class="btn btn-primary"   disabled>⬇ Extract Listing</button>
+    <button id="btn-extract-reviews" class="btn btn-reviews"  disabled>💬 Extract Reviews</button>
+    <button id="btn-analyze"        class="btn btn-secondary" disabled>✦ Analyze</button>
+  </div>
+
+  <div id="error-banner" class="error-banner hidden"></div>
+  <div id="info-banner"  class="info-banner  hidden"></div>
+
+  <div id="cache-notice" class="cache-notice hidden">
+    <span id="cache-msg"></span>
+    <div class="cache-buttons">
+      <button id="btn-load-cache"   class="btn-xs btn-xs-primary">Load</button>
+      <button id="btn-ignore-cache" class="btn-xs btn-xs-ghost">Ignore</button>
+    </div>
+  </div>
+
+  <div id="tabs" class="tabs hidden">
+    <button class="tab active" data-tab="listing">Listing</button>
+    <button class="tab"        data-tab="reviews">Reviews</button>
+    <button class="tab"        data-tab="report">AI Report</button>
+  </div>
+
+  <!-- ── Tab: Listing ── -->
+  <div id="tab-listing" class="tab-panel">
+    <div class="panel-actions">
+      <button id="btn-open-review-page" class="btn-small hidden">↗ Open Review Page</button>
+      <button id="btn-open-full-app" class="btn-small">↗ Open Full App</button>
+      <button id="btn-export-json"      class="btn-small" disabled>Export JSON</button>
+    </div>
+    <div id="listing-content" class="listing-grid"></div>
+  </div>
+
+  <!-- ── Tab: Reviews ── -->
+  <div id="tab-reviews" class="tab-panel hidden">
+
+    <div class="manual-guide">
+      <strong>Manual Assisted Review Collection</strong>
+      <ol>
+        <li>Open the Amazon review page.</li>
+        <li>Manually click <strong>“Show 10 more reviews”</strong> until enough reviews are visible.</li>
+        <li>Click <strong>Capture Visible Reviews</strong> to save all reviews currently visible.</li>
+        <li>Repeat anytime to add more visible reviews.</li>
+      </ol>
+      <div class="guide-note">ListingLens only reads reviews Amazon shows in your browser. It does not bypass Amazon limits.</div>
+    </div>
+
+    <!-- Data quality indicator -->
+    <div id="data-quality-bar" class="dq-bar hidden">
+      <div class="dq-row">
+        <span class="dq-item"><span class="dq-dot" id="dq-listing-dot">○</span> Listing: <span id="dq-listing">—</span></span>
+        <span class="dq-item"><span class="dq-dot" id="dq-reviews-dot">○</span> Visible: <span id="dq-reviews">0</span></span>
+        <span class="dq-item"><span class="dq-dot" id="dq-paste-dot">○</span> Pasted: <span id="dq-paste">0</span></span>
+        <span class="dq-item"><span id="dq-strength-badge" class="dq-strength">No data</span></span>
+      </div>
+      <div id="dq-limited-notice" class="dq-limited hidden">
+        ℹ Amazon is showing a limited review selection. ListingLens can still analyze visible reviews.
+      </div>
+    </div>
+
+    <div class="panel-actions">
+      <button id="btn-export-csv"   class="btn-small" disabled>Export CSV</button>
+      <button id="btn-clear-reviews" class="btn-small btn-small-danger" disabled>Clear</button>
+    </div>
+
+    <div id="review-summary" class="review-summary hidden"></div>
+    <div id="review-list"    class="review-list"></div>
+
+    <!-- Manual Paste Reviews -->
+    <details id="paste-section" class="paste-section">
+      <summary class="paste-summary">✏ Paste Reviews Manually</summary>
+      <div class="paste-body">
+        <div class="paste-hint">Paste review text from Amazon or any source. One review per block. Extract a listing first so pasted reviews attach to the correct ASIN.</div>
+        <textarea id="paste-input" class="paste-textarea" placeholder="Paste review text here…&#10;&#10;Example:&#10;★★★★★ Great product!&#10;Love how easy it is to apply. Sticks well on car windows.&#10;&#10;★★★☆☆ A bit small&#10;Looks nice but smaller than the photo suggests."></textarea>
+        <button id="btn-add-pasted" class="btn btn-primary btn-add-pasted">Add Pasted Reviews</button>
+      </div>
+    </details>
+
+    <!-- Advanced / Experimental (collapsed) -->
+    <details id="advanced-section" class="advanced-section">
+      <summary class="advanced-summary">⚙ Advanced — Auto Collect (Experimental)</summary>
+      <div class="advanced-body">
+        <div class="advanced-warning">
+          ⚠ Auto Collect is best-effort. Amazon may limit review access, require sign-in, show CAPTCHA, or show only a limited selection. Use a separate buyer-only browser profile. Do not use your Seller Central profile.
+        </div>
+        <label class="adv-checkbox-label">
+          <input type="checkbox" id="adv-understand"/>
+          I understand this is best-effort and may not collect all reviews.
+        </label>
+        <div id="adv-controls" class="adv-controls disabled-overlay">
+          <div class="adv-row">
+            <label class="col-label">Delay</label>
+            <select id="adv-delay" class="col-select">
+              <option value="7" selected>7 sec</option>
+              <option value="10">10 sec</option>
+              <option value="15">15 sec</option>
+            </select>
+            <label class="col-label">Max clicks</label>
+            <input id="adv-max-clicks" type="number" class="col-input" value="5" min="1" max="30"/>
+          </div>
+          <button id="btn-start-collect" class="btn btn-collect" disabled>▶ Start Auto Collect</button>
+          <button id="btn-stop-collect"  class="btn btn-stop hidden">■ Stop</button>
+          <div id="adv-status" class="adv-status hidden"></div>
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ── Tab: AI Report ── -->
+  <div id="tab-report" class="tab-panel hidden">
+    <div class="panel-actions">
+      <button id="btn-copy-report" class="btn-small" disabled>Copy Report</button>
+      <button id="btn-export-md"   class="btn-small" disabled>Export MD</button>
+    </div>
+    <!-- Category selector -->
+    <div class="category-row">
+      <label class="cat-label">Product category:</label>
+      <select id="category-select" class="cat-select">
+        <option value="auto">Auto-detect</option>
+        <option value="custom_pod">Custom / POD / Gift</option>
+        <option value="beauty">Beauty / Personal Care</option>
+        <option value="supplement">Supplement / Health</option>
+        <option value="electronics">Electronics / Accessories</option>
+        <option value="home_kitchen">Home / Kitchen</option>
+        <option value="pet">Pet</option>
+        <option value="baby">Baby / Kids</option>
+        <option value="apparel">Apparel / Fashion</option>
+        <option value="tools">Tools / Outdoor</option>
+        <option value="generic">Generic Product</option>
+      </select>
+    </div>
+    <div id="report-content" class="report-body"></div>
+  </div>
+
+  <div id="loading" class="loading hidden">
+    <div class="spinner"></div>
+    <div id="loading-msg" class="loading-text">Working…</div>
+  </div>
+
+  <footer class="footer">
+    <button id="btn-settings" class="btn-link">⚙ Settings</button>
+    <button id="btn-open-full-app-footer" class="btn-link">↗ Full App</button>
+    <span class="footer-note">v1.4.5 · Data stays local · AI via selected provider</span>
+  </footer>
+
+  <script src="subscription.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
