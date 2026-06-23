@@ -4,50 +4,68 @@
 <meta charset="UTF-8">
 <title>ListingLens — Terms of Service</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ListingLens — Amazon Review-to-Copy Intelligence">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
-  h1 { font-size: 24px; }
-  h2 { font-size: 17px; margin-top: 32px; }
-  p, li { font-size: 14px; color: #333; }
-  .updated { color: #777; font-size: 13px; margin-bottom: 32px; }
+  :root { --bg:#0d0f14; --card:#161922; --border:#262b38; --text:#e7eaf0; --muted:#9aa3b5; --primary:#5b8df6; --secondary:#a78bfa; --success:#34d399; --warning:#f59e0b; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:radial-gradient(circle at 20% 0%, rgba(91,141,246,.14), transparent 32%), radial-gradient(circle at 90% 20%, rgba(167,139,250,.12), transparent 30%), var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+  .wrap { max-width:860px; margin:0 auto; padding:56px 24px 80px; }
+  header { display:flex; align-items:center; gap:12px; margin-bottom:38px; }
+  .logo { width:38px; height:38px; flex:0 0 auto; }
+  h1 { font-size:22px; margin:0; }
+  .tagline { color:var(--muted); font-size:13px; margin:2px 0 0; }
+  h2 { font-size:32px; line-height:1.25; margin:0 0 16px; letter-spacing:-.02em; }
+  h3 { font-size:16px; margin:0 0 8px; }
+  p { color:var(--muted); font-size:15px; margin:0 0 14px; }
+  .hero p { max-width:620px; font-size:16px; }
+  .cta-row { display:flex; gap:12px; margin:28px 0 42px; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:11px 22px; border-radius:8px; font-size:14px; font-weight:700; text-decoration:none; cursor:pointer; border:0; }
+  .btn-primary { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; box-shadow:0 0 26px rgba(91,141,246,.22); }
+  .btn-secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:32px 0; }
+  @media (max-width:680px){ .grid{grid-template-columns:1fr;} h2{font-size:28px;} .wrap{padding-top:40px;} }
+  .card { background:rgba(22,25,34,.88); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  .card h3 { color:var(--text); }
+  .card p, .card li { color:var(--muted); font-size:13px; }
+  ul, ol { margin:10px 0 0; padding-left:20px; }
+  li { margin:6px 0; color:var(--muted); font-size:14px; }
+  .plans { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+  @media (max-width:680px){ .plans{grid-template-columns:1fr;} }
+  .plan { border:1px solid var(--border); border-radius:12px; padding:22px; background:rgba(22,25,34,.88); }
+  .plan.pro { border-color:rgba(91,141,246,.75); background:rgba(91,141,246,.07); }
+  .plan-name { font-size:13px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .plan-price { font-size:30px; font-weight:800; margin:6px 0 10px; }
+  .plan-price span { font-size:13px; color:var(--muted); font-weight:500; }
+  .notice { background:rgba(91,141,246,.09); border:1px solid rgba(91,141,246,.28); color:var(--muted); padding:14px 16px; border-radius:10px; margin:18px 0; font-size:13px; }
+  code { background:rgba(91,141,246,.14); color:#bcd0ff; padding:2px 6px; border-radius:5px; font-size:12px; }
+  footer { margin-top:54px; padding-top:22px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12px; color:var(--muted); }
+  footer a, .text-link { color:var(--muted); text-decoration:none; }
+  footer a:hover, .text-link:hover { color:var(--text); }
+
 </style>
 </head>
 <body>
+<div class="wrap">
+  <header>
+    <svg class="logo" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="#5b8df6" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div>
+      <h1>ListingLens</h1>
+      <p class="tagline">Amazon Review-to-Copy Intelligence</p>
+    </div>
+  </header>
 
-<h1>ListingLens — Terms of Service</h1>
-<p class="updated">Last updated: June 17, 2026</p>
+  <main class="hero"><h2>Terms of Service</h2><p>Last updated: June 23, 2026</p></main>
+  <section class="card"><h3>1. What ListingLens does</h3><p>ListingLens reads publicly visible Amazon listing and review content in your browser. Pro users can send selected content to OpenAI or Google Gemini using their own API key to generate copywriting suggestions.</p></section>
+  <section class="card"><h3>2. Free and Pro plans</h3><p>The Free plan allows checking up to 10 different products per day, with no AI analysis. The Pro plan ($39/month) removes the daily product limit and includes up to 150 AI analyses per month.</p></section>
+  <section class="card"><h3>3. Billing</h3><p>Pro subscriptions are billed monthly by Polar. We do not store payment card details. You can cancel through the customer portal; access continues until the end of the current billing period.</p></section>
+  <section class="card"><h3>4. AI provider usage</h3><p>In Bring Your Own API Key mode, any OpenAI or Google usage costs are your responsibility and are billed directly by that provider.</p></section>
+  <section class="card"><h3>5. Acceptable use</h3><p>Do not use ListingLens to violate Amazon's terms, bypass access restrictions, automate purchases, automate login, or perform actions in Seller Central.</p></section>
+  <section class="card"><h3>6. No guarantee of outcomes</h3><p>ListingLens provides analysis and suggestions based on available data. It does not guarantee increased sales, reduced returns, or any specific business outcome.</p></section>
 
-<p>These terms govern your use of the ListingLens Chrome extension, published by Clingogo ("we", "us"). By installing or using ListingLens, you agree to these terms.</p>
-
-<h2>1. What ListingLens does</h2>
-<p>ListingLens reads publicly visible Amazon listing and review content in your browser and, if you choose to run an analysis, sends that content to an AI provider (OpenAI or Google Gemini) using an API key you provide, to generate copywriting suggestions. ListingLens does not access your Amazon account, Seller Central, or any login credentials.</p>
-
-<h2>2. Free and Pro plans</h2>
-<p>The Free plan allows checking up to 10 different products per day, with no AI analysis. The Pro plan ($39/month) removes the daily product limit and includes up to 150 AI analyses per month. Plan limits may be adjusted with notice; existing subscribers will be notified of material changes before they take effect.</p>
-
-<h2>3. Billing</h2>
-<p>Pro subscriptions are billed monthly and processed by our payment partner. You can cancel at any time; access continues until the end of the current billing period. We do not store your payment card details — these are handled entirely by our payment processor.</p>
-
-<h2>4. Your responsibility for AI provider usage</h2>
-<p>If you use the "Bring your own API key" mode, any usage costs charged by OpenAI or Google are your responsibility, billed directly by that provider. ListingLens does not mark up or resell AI provider usage in this mode.</p>
-
-<h2>5. Acceptable use</h2>
-<p>You agree not to use ListingLens to violate Amazon's Conditions of Use, to scrape data at a scale or frequency intended to circumvent Amazon's systems, or to harass, deceive, or harm other users or sellers. We recommend using a separate, buyer-only browser profile when reviewing listings, rather than a profile signed into Seller Central, to protect your seller account.</p>
-
-<h2>6. No guarantee of outcomes</h2>
-<p>ListingLens provides analysis and suggestions based on available data. It does not guarantee increased sales, reduced returns, or any specific business outcome. AI-generated suggestions should be reviewed by you before publishing them to a live listing.</p>
-
-<h2>7. Service availability</h2>
-<p>We aim to keep ListingLens functional, but Amazon's page structure, review visibility, and AI provider availability can change without notice and may affect functionality. We are not liable for temporary or extended disruptions caused by third parties.</p>
-
-<h2>8. Limitation of liability</h2>
-<p>ListingLens is provided "as is." To the maximum extent permitted by law, Clingogo is not liable for indirect, incidental, or consequential damages arising from your use of the extension, including but not limited to lost sales, account actions taken by Amazon, or AI provider costs.</p>
-
-<h2>9. Changes to these terms</h2>
-<p>We may update these terms from time to time. Continued use of ListingLens after an update constitutes acceptance of the revised terms.</p>
-
-<h2>10. Contact</h2>
-<p>Questions about these terms can be sent via the GitHub repository: <a href="https://github.com/doquang-frvn" target="_blank">github.com/doquang-frvn</a>.</p>
-
+  <footer>
+    <span>© 2026 Clingogo · ListingLens v1.5.2</span>
+    <span><a href="index.html">Home</a> · <a href="pricing.html">Pricing</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></span>
+  </footer>
+</div>
 </body>
 </html>

@@ -4,66 +4,68 @@
 <meta charset="UTF-8">
 <title>ListingLens — Privacy Policy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ListingLens — Amazon Review-to-Copy Intelligence">
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; }
-  h1 { font-size: 24px; }
-  h2 { font-size: 17px; margin-top: 32px; }
-  p, li { font-size: 14px; color: #333; }
-  .updated { color: #777; font-size: 13px; margin-bottom: 32px; }
-  code { background: #f3f3f3; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  :root { --bg:#0d0f14; --card:#161922; --border:#262b38; --text:#e7eaf0; --muted:#9aa3b5; --primary:#5b8df6; --secondary:#a78bfa; --success:#34d399; --warning:#f59e0b; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:radial-gradient(circle at 20% 0%, rgba(91,141,246,.14), transparent 32%), radial-gradient(circle at 90% 20%, rgba(167,139,250,.12), transparent 30%), var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+  .wrap { max-width:860px; margin:0 auto; padding:56px 24px 80px; }
+  header { display:flex; align-items:center; gap:12px; margin-bottom:38px; }
+  .logo { width:38px; height:38px; flex:0 0 auto; }
+  h1 { font-size:22px; margin:0; }
+  .tagline { color:var(--muted); font-size:13px; margin:2px 0 0; }
+  h2 { font-size:32px; line-height:1.25; margin:0 0 16px; letter-spacing:-.02em; }
+  h3 { font-size:16px; margin:0 0 8px; }
+  p { color:var(--muted); font-size:15px; margin:0 0 14px; }
+  .hero p { max-width:620px; font-size:16px; }
+  .cta-row { display:flex; gap:12px; margin:28px 0 42px; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:11px 22px; border-radius:8px; font-size:14px; font-weight:700; text-decoration:none; cursor:pointer; border:0; }
+  .btn-primary { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; box-shadow:0 0 26px rgba(91,141,246,.22); }
+  .btn-secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:32px 0; }
+  @media (max-width:680px){ .grid{grid-template-columns:1fr;} h2{font-size:28px;} .wrap{padding-top:40px;} }
+  .card { background:rgba(22,25,34,.88); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  .card h3 { color:var(--text); }
+  .card p, .card li { color:var(--muted); font-size:13px; }
+  ul, ol { margin:10px 0 0; padding-left:20px; }
+  li { margin:6px 0; color:var(--muted); font-size:14px; }
+  .plans { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+  @media (max-width:680px){ .plans{grid-template-columns:1fr;} }
+  .plan { border:1px solid var(--border); border-radius:12px; padding:22px; background:rgba(22,25,34,.88); }
+  .plan.pro { border-color:rgba(91,141,246,.75); background:rgba(91,141,246,.07); }
+  .plan-name { font-size:13px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .plan-price { font-size:30px; font-weight:800; margin:6px 0 10px; }
+  .plan-price span { font-size:13px; color:var(--muted); font-weight:500; }
+  .notice { background:rgba(91,141,246,.09); border:1px solid rgba(91,141,246,.28); color:var(--muted); padding:14px 16px; border-radius:10px; margin:18px 0; font-size:13px; }
+  code { background:rgba(91,141,246,.14); color:#bcd0ff; padding:2px 6px; border-radius:5px; font-size:12px; }
+  footer { margin-top:54px; padding-top:22px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12px; color:var(--muted); }
+  footer a, .text-link { color:var(--muted); text-decoration:none; }
+  footer a:hover, .text-link:hover { color:var(--text); }
+
 </style>
 </head>
 <body>
+<div class="wrap">
+  <header>
+    <svg class="logo" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="#5b8df6" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <div>
+      <h1>ListingLens</h1>
+      <p class="tagline">Amazon Review-to-Copy Intelligence</p>
+    </div>
+  </header>
 
-<h1>ListingLens — Privacy Policy</h1>
-<p class="updated">Last updated: June 17, 2026</p>
+  <main class="hero"><h2>Privacy Policy</h2><p>Last updated: June 23, 2026</p></main>
+  <section class="card"><h3>What data ListingLens accesses</h3><p>When you use ListingLens on an Amazon product or review page, it can read publicly visible listing content, visible customer reviews, and review text you manually paste.</p><p>ListingLens does not access Amazon login credentials, order history, payment information, Seller Central, or Amazon Ads accounts.</p></section>
+  <section class="card"><h3>Local storage</h3><p>Extracted listing data, reviews, settings, AI provider choice, API keys, and generated reports are stored locally in your browser using Chrome storage.</p></section>
+  <section class="card"><h3>AI analysis</h3><p>When a Pro user clicks Analyze, selected listing and review content is sent directly from the browser to the chosen AI provider, OpenAI or Google Gemini, using the user's own API key. It does not pass through ListingLens servers.</p></section>
+  <section class="card"><h3>License and subscription data</h3><p>If you activate Pro, your purchase email may be sent to the shared Clingogo license verification server to confirm subscription status. Amazon listing and review content is not sent to the license server.</p></section>
+  <section class="card"><h3>Permissions explained</h3><ul><li><strong>storage</strong> — save settings, API keys, cached listing/review data, and reports locally.</li><li><strong>activeTab / scripting</strong> — read listing and visible review content only when you interact with the extension.</li><li><strong>Amazon host permissions</strong> — run on supported Amazon product and review pages.</li><li><strong>OpenAI / Gemini host permissions</strong> — call the selected AI provider directly from the extension.</li><li><strong>tabs</strong> optional and <strong>alarms</strong> — used only for Advanced Auto Collect after explicit opt-in.</li></ul></section>
+  <section class="card"><h3>What ListingLens does not do</h3><ul><li>Does not sell data.</li><li>Does not collect Amazon credentials.</li><li>Does not access Seller Central.</li><li>Does not bypass Amazon review limits or CAPTCHA.</li><li>Does not automate purchases or login.</li></ul></section>
 
-<p>ListingLens is a Chrome extension built by Clingogo that helps Amazon sellers analyze their product listings and customer reviews. This page explains what data the extension accesses, where it goes, and what it does not do.</p>
-
-<h2>What data ListingLens accesses</h2>
-<p>When you use ListingLens on an Amazon product or review page, the extension reads:</p>
-<ul>
-  <li>Publicly visible listing content (title, bullet points, description, price, rating)</li>
-  <li>Publicly visible customer reviews on the page you have open</li>
-  <li>Review text you manually paste into the extension</li>
-</ul>
-<p>ListingLens does not access your Amazon account, login session, order history, payment information, or Seller Central data. It only reads what is already rendered on the page in your browser.</p>
-
-<h2>Where your data is stored</h2>
-<p>All extracted listing data, reviews, and generated reports are stored locally in your browser using Chrome's <code>storage.local</code> API. This data stays on your device and is not transmitted to ListingLens or Clingogo servers.</p>
-
-<h2>AI analysis (OpenAI / Gemini)</h2>
-<p>When you click "Analyze," ListingLens sends the extracted listing and review data directly from your browser to the AI provider you have selected in Settings (OpenAI or Google Gemini), using an API key that you provide yourself. This data goes directly to OpenAI or Google — it does not pass through any ListingLens server.</p>
-<p>Your API key is stored locally in your browser and is never transmitted to ListingLens, Clingogo, or any third party other than the AI provider itself.</p>
-<p>Please refer to <a href="https://openai.com/policies/privacy-policy" target="_blank">OpenAI's Privacy Policy</a> or <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a> for how each provider handles data sent through their API.</p>
-
-<h2>License and subscription data</h2>
-<p>If you activate a ListingLens Pro license, your license key is sent to our license verification server to confirm your subscription status. We store the minimum data necessary to validate your plan (license key, plan type, usage count) and do not store your Amazon listing or review content on any server.</p>
-
-<h2>What ListingLens does not do</h2>
-<ul>
-  <li>Does not collect or store your Amazon login credentials</li>
-  <li>Does not access Seller Central or Amazon Ads accounts</li>
-  <li>Does not sell or share your data with advertisers</li>
-  <li>Does not track your browsing activity outside of Amazon product/review pages</li>
-  <li>Does not bypass Amazon's review display limits, automate purchases, automate login, or perform actions in Seller Central</li>
-</ul>
-
-<h2>Permissions explained</h2>
-<ul>
-  <li><strong>storage</strong> — to save user settings, selected AI provider, locally stored API keys, captured listing/review data, and generated reports in your browser</li>
-  <li><strong>activeTab / scripting</strong> — to read listing and visible review content from the Amazon tab you're viewing, only when you open the extension or click an extraction action</li>
-  <li><strong>Amazon host permissions</strong> — to run on specific Amazon product and review page domains. ListingLens does not use a broad all_urls permission</li>
-  <li><strong>OpenAI / Google Gemini host permissions</strong> — to send selected listing/review content directly from your browser to the AI provider you selected, using your own API key</li>
-  <li><strong>tabs</strong> (optional) — only requested at runtime if you explicitly enable Advanced Auto Collect, so ListingLens can monitor or update the active Amazon review tab during that optional workflow</li>
-  <li><strong>alarms</strong> — used only by the optional Advanced Auto Collect feature to schedule delayed, best-effort review capture steps after explicit user opt-in</li>
-</ul>
-
-<h2>Your choices</h2>
-<p>You can clear all stored data at any time from the extension's Reviews tab ("Clear Reviews") or by removing the extension from Chrome, which deletes all local storage associated with it.</p>
-
-<h2>Contact</h2>
-<p>Questions about this policy can be sent via our <a href="support.html">support page</a> or directly through <a href="https://github.com/doquang-frvn/listinglens/issues" target="_blank">GitHub Issues</a>.</p>
-
+  <footer>
+    <span>© 2026 Clingogo · ListingLens v1.5.2</span>
+    <span><a href="index.html">Home</a> · <a href="pricing.html">Pricing</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></span>
+  </footer>
+</div>
 </body>
 </html>
