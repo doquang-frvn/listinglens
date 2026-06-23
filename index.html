@@ -4,129 +4,89 @@
 <meta charset="UTF-8">
 <title>ListingLens — Amazon Review-to-Copy Intelligence</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Turn visible Amazon reviews and listing content into title, bullet, and ad-copy fixes that reduce expectation gaps and return risk.">
+<meta name="description" content="ListingLens — Amazon Review-to-Copy Intelligence">
 <style>
-  :root {
-    --bg: #0d0f14; --card: #161922; --border: #262b38;
-    --text: #e7eaf0; --muted: #9aa3b5;
-    --primary: #5b8df6; --secondary: #a78bfa; --success: #34d399;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-  }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 60px 24px 80px; }
-  header { display: flex; align-items: center; gap: 12px; margin-bottom: 40px; }
-  .logo { width: 36px; height: 36px; }
-  h1 { font-size: 22px; margin: 0; }
-  .tagline { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
-  .hero h2 { font-size: 32px; line-height: 1.3; margin: 0 0 16px; }
-  .hero p { color: var(--muted); font-size: 16px; max-width: 560px; }
-  .cta-row { display: flex; gap: 12px; margin: 28px 0 50px; flex-wrap: wrap; }
-  .btn {
-    display: inline-block; padding: 11px 22px; border-radius: 8px;
-    font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer;
-  }
-  .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; }
-  .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 40px 0; }
-  @media (max-width: 560px) { .features { grid-template-columns: 1fr; } }
-  .feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-  .feature-card h3 { font-size: 14px; margin: 0 0 6px; color: var(--text); }
-  .feature-card p { font-size: 13px; color: var(--muted); margin: 0; }
-  .pricing { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin: 40px 0; }
-  .pricing h2 { font-size: 18px; margin: 0 0 18px; }
-  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 560px) { .plans { grid-template-columns: 1fr; } }
-  .plan { border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
-  .plan.pro { border-color: var(--primary); background: rgba(91,141,246,0.06); }
-  .plan-name { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-  .plan-price { font-size: 26px; font-weight: 700; margin: 6px 0 12px; }
-  .plan-price span { font-size: 13px; color: var(--muted); font-weight: 400; }
-  .plan ul { margin: 0; padding-left: 18px; font-size: 13px; color: var(--muted); }
-  .plan ul li { margin-bottom: 6px; }
-  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--text); }
+  :root { --bg:#0d0f14; --card:#161922; --border:#262b38; --text:#e7eaf0; --muted:#9aa3b5; --primary:#5b8df6; --secondary:#a78bfa; --success:#34d399; --warning:#f59e0b; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:radial-gradient(circle at 20% 0%, rgba(91,141,246,.14), transparent 32%), radial-gradient(circle at 90% 20%, rgba(167,139,250,.12), transparent 30%), var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+  .wrap { max-width:860px; margin:0 auto; padding:56px 24px 80px; }
+  header { display:flex; align-items:center; gap:12px; margin-bottom:38px; }
+  .logo { width:38px; height:38px; flex:0 0 auto; }
+  h1 { font-size:22px; margin:0; }
+  .tagline { color:var(--muted); font-size:13px; margin:2px 0 0; }
+  h2 { font-size:32px; line-height:1.25; margin:0 0 16px; letter-spacing:-.02em; }
+  h3 { font-size:16px; margin:0 0 8px; }
+  p { color:var(--muted); font-size:15px; margin:0 0 14px; }
+  .hero p { max-width:620px; font-size:16px; }
+  .cta-row { display:flex; gap:12px; margin:28px 0 42px; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:11px 22px; border-radius:8px; font-size:14px; font-weight:700; text-decoration:none; cursor:pointer; border:0; }
+  .btn-primary { background:linear-gradient(135deg,var(--primary),var(--secondary)); color:#fff; box-shadow:0 0 26px rgba(91,141,246,.22); }
+  .btn-secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:32px 0; }
+  @media (max-width:680px){ .grid{grid-template-columns:1fr;} h2{font-size:28px;} .wrap{padding-top:40px;} }
+  .card { background:rgba(22,25,34,.88); border:1px solid var(--border); border-radius:12px; padding:20px; }
+  .card h3 { color:var(--text); }
+  .card p, .card li { color:var(--muted); font-size:13px; }
+  ul, ol { margin:10px 0 0; padding-left:20px; }
+  li { margin:6px 0; color:var(--muted); font-size:14px; }
+  .plans { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:28px 0; }
+  @media (max-width:680px){ .plans{grid-template-columns:1fr;} }
+  .plan { border:1px solid var(--border); border-radius:12px; padding:22px; background:rgba(22,25,34,.88); }
+  .plan.pro { border-color:rgba(91,141,246,.75); background:rgba(91,141,246,.07); }
+  .plan-name { font-size:13px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .plan-price { font-size:30px; font-weight:800; margin:6px 0 10px; }
+  .plan-price span { font-size:13px; color:var(--muted); font-weight:500; }
+  .notice { background:rgba(91,141,246,.09); border:1px solid rgba(91,141,246,.28); color:var(--muted); padding:14px 16px; border-radius:10px; margin:18px 0; font-size:13px; }
+  code { background:rgba(91,141,246,.14); color:#bcd0ff; padding:2px 6px; border-radius:5px; font-size:12px; }
+  footer { margin-top:54px; padding-top:22px; border-top:1px solid var(--border); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:12px; color:var(--muted); }
+  footer a, .text-link { color:var(--muted); text-decoration:none; }
+  footer a:hover, .text-link:hover { color:var(--text); }
+
 </style>
 </head>
 <body>
 <div class="wrap">
-
   <header>
-    <svg class="logo" viewBox="0 0 20 20" fill="none">
-      <circle cx="10" cy="10" r="9" stroke="#5b8df6" stroke-width="1.5"/>
-      <path d="M6 10h8M10 6v8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
+    <svg class="logo" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" stroke="#5b8df6" stroke-width="1.5"/><path d="M6 10h8M10 6v8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
     <div>
       <h1>ListingLens</h1>
       <p class="tagline">Amazon Review-to-Copy Intelligence</p>
     </div>
   </header>
 
-  <div class="hero">
+  <main class="hero">
     <h2>Find what your listing should clarify before customers complain.</h2>
-    <p>ListingLens turns the Amazon reviews and listing content you can already see into title rewrites, bullets, image text, and ad angles — backed by evidence, not guesses.</p>
-  </div>
+    <p>ListingLens turns visible Amazon reviews and listing content into evidence-based listing improvements — title rewrites, bullet points, image text, and ad angles.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/listinglens/dlianhmjeflhoeahmfibdkhbnhjghdfj?utm_source=item-share-cb" target="_blank" rel="noopener">Add to Chrome — Free</a>
+      <a class="btn btn-secondary" href="pricing.html">View Pro Pricing</a>
+      <a class="btn btn-secondary" href="support.html">How it works</a>
+    </div>
+  </main>
 
-  <div class="cta-row">
-    <a class="btn btn-primary" href="https://chrome.google.com/webstore" target="_blank">Add to Chrome — Free</a>
-    <a class="btn btn-secondary" href="privacy.html">Privacy Policy</a>
-  </div>
+  <section class="grid">
+    <div class="card"><h3>Free data capture</h3><p>Extract listing titles, bullets, descriptions, product details, and visible customer reviews from Amazon pages you choose to open.</p></div>
+    <div class="card"><h3>Pro AI analysis</h3><p>Unlock AI reports with evidence tags, confidence levels, listing gaps, return-risk signals, and ready-to-use copy improvements.</p></div>
+    <div class="card"><h3>Visible reviews only</h3><p>ListingLens reads what Amazon shows in your browser. It does not bypass Amazon limits, login screens, CAPTCHA, or Seller Central.</p></div>
+    <div class="card"><h3>Bring your own AI key</h3><p>Pro analysis uses your own OpenAI or Google Gemini API key. Your key is stored locally in your browser.</p></div>
+  </section>
 
-  <div class="features">
-    <div class="feature-card">
-      <h3>Evidence-tagged insights</h3>
-      <p>Every suggestion is labeled [listing], [review], or [inferred] with a confidence level — never a guess presented as fact.</p>
+  <section class="plans" id="pricing">
+    <div class="plan">
+      <div class="plan-name">Free</div><div class="plan-price">$0</div>
+      <ul><li>10 different products/day</li><li>Extract listing data</li><li>Capture visible reviews</li><li>Paste reviews manually</li><li>Export captured data</li><li>No AI analysis</li></ul>
     </div>
-    <div class="feature-card">
-      <h3>Listing Gap Finder</h3>
-      <p>Spots expectation mismatches — size, install steps, compatibility — before they turn into returns.</p>
+    <div class="plan pro">
+      <div class="plan-name">Pro</div><div class="plan-price">$39<span>/month</span></div>
+      <ul><li>Unlimited products</li><li>150 AI analyses/month</li><li>Title, bullet, image-text, and ad-angle suggestions</li><li>Listing gap and return-risk report</li><li>Evidence source + confidence labels</li></ul>
+      <div class="cta-row"><a class="btn btn-primary" href="pricing.html">Upgrade to Pro</a></div>
     </div>
-    <div class="feature-card">
-      <h3>Negative Review Shield</h3>
-      <p>Turns complaint patterns into ready-to-use bullet and image-text fixes.</p>
-    </div>
-    <div class="feature-card">
-      <h3>Bring your own AI key</h3>
-      <p>Use OpenAI or Google Gemini (genuinely free tier, no card required). Your key stays in your browser.</p>
-    </div>
-  </div>
-
-  <div class="pricing">
-    <h2>Pricing</h2>
-    <div class="plans">
-      <div class="plan">
-        <div class="plan-name">Free</div>
-        <div class="plan-price">$0</div>
-        <ul>
-          <li>10 different products/day</li>
-          <li>Capture visible reviews</li>
-          <li>Manual paste reviews</li>
-        </ul>
-      </div>
-      <div class="plan pro">
-        <div class="plan-name">Pro</div>
-        <div class="plan-price">$39<span>/month</span></div>
-        <ul>
-          <li>Unlimited products</li>
-          <li>150 AI reports/month</li>
-          <li>Full evidence-based report + exports</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  </section>
 
   <footer>
-    <span>© 2026 Clingogo</span>
-    <span>
-      <a href="privacy.html">Privacy</a> ·
-      <a href="https://github.com/doquang-frvn/listinglens" target="_blank">GitHub</a>
-    </span>
+    <span>© 2026 Clingogo · ListingLens v1.5.2</span>
+    <span><a href="index.html">Home</a> · <a href="pricing.html">Pricing</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="support.html">Support</a></span>
   </footer>
-
 </div>
 </body>
 </html>
